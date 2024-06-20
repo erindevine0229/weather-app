@@ -1,0 +1,88 @@
+* {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-image: linear-gradient(90deg, #4e47e0 0%, #2d2dc1 35%, #27086b 100%);
+    margin: 0 px;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    color: white;
+    font-size: 45px;
+    padding: 20px;
+    margin-left: 50%;
+}
+
+#search-submit-btn {
+    background-image: linear-gradient(90deg, #8e89f1 0%, #6060f5 50%, #763fed 100%);
+    color: white;
+    padding: 10px 60px;
+    border-radius: 5px;
+    margin: 30px 20px;
+}
+
+.search-area {
+    border-bottom: 2px grey solid;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+#search-bar {
+    margin: 0px 20px;
+    height: 30px;
+}
+
+.search-area h2 {
+    margin: 20px 20px;
+    text-align: center;
+
+}
+
+.right-display-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-cards {
+    color: white;
+    font-size: 20px;
+    border: 2px black solid;
+    height: 250px;
+    width: 200px;
+    background-image: linear-gradient(90deg, #2c2868 0%, #181841 50%, #1a0e32 100%);
+    text-align: left;
+    padding: 5px 0px 5px 10px;
+    flex-direction: row;
+}
+
+.day-cards h5 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#emoji {
+    font-size: 25px;;
+}
+
+#main-card {
+    border: 2px black solid;
+    height: 200px;
+    width: 1200px;
+    text-align: left;
+    padding-left: 10px;
+    justify-content: center;
+}
+
+#main-card h4 {
+    font-size: 30px;
+}
+#main-card p {
+    font-size: 15px;
+}
