@@ -1,4 +1,4 @@
-// API Key: b151c1f3e021551c216fcf9e899287cc 
+
 
 const apiKey = 'b151c1f3e021551c216fcf9e899287cc';
 
@@ -30,10 +30,11 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&appid=${apiKe
     cityList.push(cityInput);
     localStorage.setItem("City Input", JSON.stringify(cityList));
 
-    const mainCard = document.getElementById('main-card');
-    const currentCity = document.createElement('h3');
-    currentCity.textContent = cityInput;
-    mainCard.append(currentCity);
+    const cityLog = document.getElementById('city-buttons-container');
+    const searchedCity = document.createElement('button');
+    searchedCity.classList.add('log-btns')
+    searchedCity.textContent = cityInput;
+    cityLog.append(searchedCity);
 
   })
 
@@ -43,4 +44,44 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&appid=${apiKe
 
 });
 
+
+
+
+
+const cityInput = searchBar.value.trim();
+
+fetch(`api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`)
+.then(function (response) {
+  console.log(response)
+  return response.json
+})
+.catch(error => {
+  console.error('There was a problem with the fetch operation:', error);
+});
+
+const date = dayjs().format('M/D/YYYY');
+const temperature = data.main.temp;
+const wind = data.wind.speed;
+const humidity = data.main.humidity;
+const weatherEmoji = data.weather.icon;
+
+
+todayForecast = document.getElementById('main-card');
+
+const mainHeader = document.createElement(h4);
+mainHeader.textContent = `${cityInput} (${date}) ${weatherEmoji}`;
+
+const mainTemp = document.createElement('p');
+mainTemp.textContent = `Temp: ${temperature} °F`;
+
+const mainWind = document.createElement('p');
+mainTemp.textContent = `Wind: ${wind} mph`;
+
+const mainHumidity = document.createElement('p');
+mainTemp.textContent = `Humidity: ${humidity} %`;
+
+todayForecast.append(mainHeader);
+todayForecast.append(mainTemp);
+todayForecast.append(mainWind);
+todayForecast.append(mainHumidity);
 
