@@ -173,6 +173,5 @@ function createFiveDayCards (fiveDayWeather) {
   fiveCards.append(fiveHumidEl);
   
   fiveDayContainer.append(fiveCards);
-  fiveDayContainer.style.display = 'block';
 
 };
