@@ -14,12 +14,13 @@ let cityList = JSON.parse(localStorage.getItem("City Input")) || [];
 const searchBar = document.getElementById('search-bar');
 const searchBtn = document.getElementById('search-submit-btn');
 
-
+// Call all functions when searching for new city
 searchBtn.addEventListener('click', function (event) {
 
 event.preventDefault();
 const cityInput = searchBar.value.trim();
 
+// Check that in put was entered
 if (!cityInput) {
     alert("Please enter the name of a city you'd like to search for!")
 } else {
@@ -31,6 +32,7 @@ if (!cityInput) {
 }
 });
 
+// Adds new button to the side which will store link to that fetch call
 function logNewCity (cityInput) {
   
   const cityBtn = document.createElement('button');
@@ -48,7 +50,7 @@ function logNewCity (cityInput) {
 
 }
 
-
+// Saves log info to local storage to persist
 function saveCityToHistory(cityInput) {
   if (!cityList.includes(cityInput)) {
     cityList.push(cityInput);
@@ -56,7 +58,7 @@ function saveCityToHistory(cityInput) {
   }
 };
 
-
+// get all the history log of searches upon loading the page
 function getAllCities () {
   const allCities = JSON.parse(localStorage.getItem('cityList')) || [];
   allCities.forEach(function(cityInput) {
@@ -66,7 +68,7 @@ function getAllCities () {
 
 document.addEventListener('DOMContentLoaded', getAllCities);
 
-
+// Fetch call for the current forecast
 function getCurrentWeather (cityInput) {
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=imperial`, {
 })
@@ -88,7 +90,7 @@ function getCurrentWeather (cityInput) {
   })
 };
 
-
+// fetch call to get the five next days in forecast
 function getFiveForecast(cityInput) {
   fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityInput}&appid=${apiKey}&units=imperial`, {
 
@@ -99,6 +101,7 @@ function getFiveForecast(cityInput) {
   .then(function (data) {
     // Clear our any prior data first
     fiveDayContainer.innerHTML = '';
+    // Have to do this given data in 3 hr increments, so every 8 will represent a new day
     for (let i = 0; i <= 32; i += 8) {
       let fiveDayWeather = {
           date: dayjs(data.list[i].dt_txt).format('M/D/YYYY'),
@@ -113,7 +116,7 @@ function getFiveForecast(cityInput) {
   })
 };
 
-
+// create and append all data for the main current forecast card
 function createMainCard (currentWeather) {
 // Clear any prior data first
   todayForecastContainer.innerHTML = '';
@@ -150,6 +153,7 @@ function createMainCard (currentWeather) {
 
 };
 
+// create all HTML elements and append data to the five day cards
 function createFiveDayCards (fiveDayWeather) {
   const fiveCards = document.createElement('div');
   fiveCards.classList.add('day-cards');
@@ -172,6 +176,7 @@ function createFiveDayCards (fiveDayWeather) {
   fiveCards.append(fiveWindEl);
   fiveCards.append(fiveHumidEl);
   
+  // Append all 5 cards to their container
   fiveDayContainer.append(fiveCards);
 
 };
