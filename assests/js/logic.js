@@ -90,7 +90,7 @@ function getCurrentWeather (cityInput) {
 
 
 function getFiveForecast(cityInput) {
-  fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityInput}&appid=${apiKey}`, {
+  fetch(`https://api.openweathermap.org/data/2.5/forecast/?q=${cityInput}&appid=${apiKey}&units=imperial`, {
 
   })
   .then(function (response) {
